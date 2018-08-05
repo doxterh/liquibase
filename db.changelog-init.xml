@@ -27,7 +27,7 @@
 	  <column name="NAME" type="varchar(255)"/>
     </createTable>
   </changeSet>
-  <changeSet author="rvasseur" id="changelog-create-table-need">
+  <changeSet author="rvasseur" id="changelog-create-table-training">
     <createTable tableName="T_TRAINING">
       <column name="TRAINING_ID" type="bigint">
         <constraints primaryKey="true"/>
