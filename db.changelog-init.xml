@@ -45,4 +45,48 @@
       </column>
     </createTable>
   </changeSet>
+  <changeSet author="rvasseur" id="changelog-create-table-participation-user-formation">
+    <createTable tableName="T_PARTICIPATION_USER_FORMATION">
+      <column name="PARTICIPATION_ID" type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+	  <column name="REGISTER_DATE" type="date"/>
+	  <column name="PARTICIPANT_ID" type="bigint">
+        <constraints nullable="false" foreignKeyName="fk_participation_user" references="T_USER(USER_ID)"/>
+      </column>
+	  <column name="TRAINING_ID" type="bigint">
+        <constraints nullable="false" foreignKeyName="fk_participation_training" references="T_TRAINING(TRAINING_ID)"/>
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet author="rvasseur" id="changelog-create-table-vote-user-formation">
+    <createTable tableName="T_VOTE_USER_FORMATION">
+      <column name="PARTICIPATION_ID" type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+	  <column name="REGISTER_DATE" type="date"/>
+	  <column name="NB_POINT" type="int"/>
+	  <column name="PARTICIPANT_ID" type="bigint">
+        <constraints nullable="false" foreignKeyName="fk_vote_user" references="T_USER(USER_ID)"/>
+      </column>
+	  <column name="TRAINING_ID" type="bigint">
+        <constraints nullable="false" foreignKeyName="fk_vote_training" references="T_TRAINING(TRAINING_ID)"/>
+      </column>
+    </createTable>
+  </changeSet>
+  <changeSet author="rvasseur" id="changelog-create-table-vote-user-need">
+    <createTable tableName="T_VOTE_USER_NEED">
+      <column name="VOTE_ID" type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+	  <column name="REGISTER_DATE" type="date"/>
+	  <column name="NB_POINT" type="int"/>
+	  <column name="PARTICIPANT_ID" type="bigint">
+        <constraints nullable="false" foreignKeyName="fk_vote_user" references="T_USER(USER_ID)"/>
+      </column>
+	  <column name="NEED_ID" type="bigint">
+        <constraints nullable="false" foreignKeyName="fk_vote_need" references="T_NEED(NEED_ID)"/>
+      </column>
+    </createTable>
+  </changeSet>
 </databaseChangeLog> 
