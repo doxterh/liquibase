@@ -4,19 +4,44 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd"> 
+  <changeSet author="rvasseur" id="changelog-create-table-user">
+    <createTable tableName="T_USER">
+      <column name="USER_ID" type="bigint">
+        <constraints primaryKey="true"/>
+      </column>
+	  <column name="LASTNAME" type="varchar(255)"/>
+	  <column name="NAME" type="varchar(255)"/>
+	  <column name="MAIL" type="varchar(255)"/>
+	  <column name="NNI" type="varchar(255)"/>
+	  <column name="PASSWORD" type="varchar(255)"/>
+	  <column name="ROLE" type="varchar(255)"/>
+    </createTable>
+  </changeSet>
   <changeSet author="rvasseur" id="changelog-create-table-need">
     <createTable tableName="T_NEED">
       <column name="NEED_ID" type="bigint">
-        <constraints nullable="false" primaryKey="true" unique="true"/>
+        <constraints primaryKey="true"/>
       </column>
-	  <column name="DESCRIPTION" type="varchar(255)">
-        <constraints nullable="true"/>
+	  <column name="DESCRIPTION" type="varchar(255)"/>
+	  <column name="LEVEL" type="varchar(255)"/>
+	  <column name="NAME" type="varchar(255)"/>
+    </createTable>
+  </changeSet>
+  <changeSet author="rvasseur" id="changelog-create-table-need">
+    <createTable tableName="T_TRAINING">
+      <column name="TRAINING_ID" type="bigint">
+        <constraints primaryKey="true"/>
       </column>
-	  <column name="LEVEL" type="varchar(255)">
-        <constraints nullable="true"/>
-      </column>
-	  <column name="NAME" type="varchar(255)">
-        <constraints nullable="true"/>
+	  <column name="NAME" type="varchar(255)"/>
+	  <column name="DESCRIPTION" type="varchar(255)"/>
+	  <column name="DATE" type="date"/>
+	  <column name="BEGIN_HOUR" type="time"/>
+	  <column name="END_HOUR" type="time"/>
+	  <column name="LEVEL" type="varchar(255)"/>
+	  <column name="LOCATION" type="varchar(255)"/>
+	  <column name="MAX_PEOPLE" type="varchar(255)"/>
+	  <column name="USER_ID" type="bigint">
+        <constraints nullable="false" foreignKeyName="fk_training_user" references="T_USER(USER_ID)"/>
       </column>
     </createTable>
   </changeSet>
